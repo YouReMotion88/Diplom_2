@@ -2,7 +2,7 @@ import random
 import string
 import requests
 
-from urls import BASE_URL, REGISTER, LOGIN, USER
+from urls import BASE_URL, REGISTER, LOGIN, USER, INGREDIENTS, ORDERS
 
 # Генерируем случайную строку, чтобы пользователь был уникальным
 def generate_random_string(length=8):
@@ -37,5 +37,21 @@ def delete_user(token):
 
     return requests.delete(
         BASE_URL + USER,
+        headers=headers
+    )
+
+def get_ingredients():
+    return requests.get(BASE_URL + INGREDIENTS)
+
+
+def create_order(ingredients, token=None):
+    headers = {}
+
+    if token:
+        headers["Authorization"] = token
+
+    return requests.post(
+        BASE_URL + ORDERS,
+        json={"ingredients": ingredients},
         headers=headers
     )

@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
-allure-results/
+allure_results/
 allure-report/
 .vscode/
 .DS_Store
