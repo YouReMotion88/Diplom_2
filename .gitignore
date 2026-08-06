@@ -2,8 +2,7 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
-allure_results/
-allure-report/
 .vscode/
 .DS_Store
 Thumbs.db
+allure-report/

@@ -12,9 +12,10 @@ def registered_user():
     if response.status_code == 200:
         token = response.json()["accessToken"]
 
-    yield user
+    yield user, response
 
-    delete_user(token)
+    if token:
+        delete_user(token)
 
 
 @pytest.fixture

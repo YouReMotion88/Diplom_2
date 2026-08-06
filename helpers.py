@@ -1,6 +1,7 @@
 import random
 import string
 import requests
+import allure
 
 from urls import BASE_URL, REGISTER, LOGIN, USER, INGREDIENTS, ORDERS
 
@@ -18,6 +19,7 @@ def generate_user():
     }
 
 
+@allure.step("Создание пользователя")
 def create_user(user_data):
     return requests.post(
         BASE_URL + REGISTER,
@@ -25,6 +27,7 @@ def create_user(user_data):
     )
 
 
+@allure.step("Авторизация пользователя")
 def login_user(user_data):
     return requests.post(
         BASE_URL + LOGIN,
@@ -32,6 +35,7 @@ def login_user(user_data):
     )
 
 
+@allure.step("Удаление пользователя")
 def delete_user(token):
     headers = {"Authorization": token}
 
@@ -40,10 +44,13 @@ def delete_user(token):
         headers=headers
     )
 
+
+@allure.step("Получение списка ингредиентов")
 def get_ingredients():
     return requests.get(BASE_URL + INGREDIENTS)
 
 
+@allure.step("Создание заказа")
 def create_order(ingredients, token=None):
     headers = {}
 
